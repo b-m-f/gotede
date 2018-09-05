@@ -2,16 +2,11 @@ const handlebars = require('handlebars');
 const config = require("./config.json");
 const fs = require('fs')
 
-const {port, themeName} = config;
+const inputFolder = './input'
+const outputFolder = './output'
 
-
-async function compileFile(path, config) {
-  const file = await readFile(`./input/${path}`);
-  console.log(file)
-  const template = handlebars.compile(file);
-  const result = template(config);
-  writeToFile(`./output/${path}`, result);
-
+function log(...data){
+  console.log(data)
 }
 
 function readFile(path){
@@ -26,10 +21,20 @@ function readFile(path){
   })
 }
 
+function writeToOutput(path, content){
+  const outputPath = path.replace(/input/, 'output')
 
-function writeToFile(path, content){
+  // make sure all dirs exist before writing file
+  outputPath.split('/').reduce(function(prev, curr, i) {
+    if (fs.existsSync(prev) === false) {
+      fs.mkdirSync(prev);
+    }
+    return prev + '/' + curr;
+  });
+
+  log(`Writing ${outputPath}`)
   return new Promise((res, rej) => {
-    fs.writeFile(path, content, function(err) {
+    fs.writeFile(outputPath, content, function(err) {
       if(err) {
         rej(err);
         return;
@@ -39,9 +44,81 @@ function writeToFile(path, content){
   })
 }
 
+async function compileFile(path, config) {
+  const file = await readFile(path);
+  const template = handlebars.compile(file);
+  const result = template(config);
+  writeToOutput(path, result);
+
+}
+
+async function isDir(path){
+  return new Promise((res, rej) => {
+      fs.stat(path, async (err, stats) => {
+        if(err) {
+          rej(err);
+          return;
+        }
+        if(stats.isDirectory()){
+          res(true);
+          return;
+        }
+        res(false);
+      }) 
+  })
+}
+
+function createDirectory(path){
+  if (fs.existsSync(path)) {
+    return;
+  }
+  log(`Creating ${path}`)
+  fs.mkdirSync(path);
+
+}
+
+async function compileFilesInDir(path ) {
+  return new Promise((res, rej) => {
+    fs.readdir(path, async (err, files) => {
+      const compilePromises = files.map(file => {
+        return new Promise(async (res, rej) => {
+          const filePath = `${path}/${file}`
+          try {
+            const isDirectory = await isDir(filePath);
+            if (isDirectory){
+              await compileFilesInDir(filePath);
+              res();
+            }
+            else {
+              try{
+                await compileFile(filePath, config);
+                res();
+              }
+              catch(e){
+                rej(e);
+              }
+            }
+          }
+          catch(e){
+            rej(e);
+          }
+        })
+      })
+      await Promise.all(compilePromises);
+      res();
+    });
+  })
+}
 
 
-compileFile('docker-compose.yml', config);
+async function main(){
+  try {
+    await compileFilesInDir(inputFolder)
+    log('Done');
+  } catch(e) {
+    log(e);
+  }
 
+}
 
-console.log(config);
+main();
