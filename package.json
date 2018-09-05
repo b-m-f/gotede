@@ -1,13 +1,13 @@
 {
-  "name": "ghost-theme-dev-creator",
+  "name": "ghothede",
   "version": "1.0.0",
-  "description": "Tool to set up a dev environment for your ghost theme",
+  "description": "Quick setup script for Ghost theme development environment with docker ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "b-m-f <max@ehlers.berlin>",
+  "license": "MIT",
   "dependencies": {
     "handlebars": "^4.0.12"
   }
