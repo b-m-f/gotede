@@ -1,14 +1,15 @@
 {
-  "name": "ghost-theme-dev-creator",
+  "name": "ghost-theme-dev",
   "version": "1.0.0",
-  "description": "Tool to set up a dev environment for your ghost theme",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "handlebars": "^4.0.12"
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-watch": "^5.0.1"
   }
 }
