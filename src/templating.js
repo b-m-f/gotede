@@ -16,8 +16,8 @@ function readFile(path){
   })
 }
 
-function writeToOutput(path, content){
-  const outputPath = path.replace(/input/, 'output')
+function writeToOutput(path, content, outputDir){
+  const outputPath = path.replace(/input/, outputDir )
 
   // make sure all dirs exist before writing file
   outputPath.split('/').reduce(function(prev, curr, i) {
@@ -27,7 +27,6 @@ function writeToOutput(path, content){
     return prev + '/' + curr;
   });
 
-  log(`Writing ${outputPath}`)
   return new Promise((res, rej) => {
     fs.writeFile(outputPath, content, function(err) {
       if(err) {
@@ -43,7 +42,7 @@ async function compileFile(path, config) {
   const file = await readFile(path);
   const template = handlebars.compile(file);
   const result = template(config);
-  writeToOutput(path, result);
+  writeToOutput(path, result, config.output);
 
 }
 
@@ -67,12 +66,11 @@ function createDirectory(path){
   if (fs.existsSync(path)) {
     return;
   }
-  log(`Creating ${path}`)
   fs.mkdirSync(path);
 
 }
 
-async function compileFilesInDir(path ) {
+async function compileFilesInDir(path, config) {
   return new Promise((res, rej) => {
     fs.readdir(path, async (err, files) => {
       const compilePromises = files.map(file => {
@@ -81,7 +79,7 @@ async function compileFilesInDir(path ) {
           try {
             const isDirectory = await isDir(filePath);
             if (isDirectory){
-              await compileFilesInDir(filePath);
+              await compileFilesInDir(filePath, config);
               res();
             }
             else {
