@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  ghost:
+    image: ghost
+    container_name: theme-name
+    volumes: 
+      - ./docker-mount:/var/lib/ghost/content/themes/theme-name:rw,z
+    ports: 
+      - "3003:2368"
+    environment:
+      - url=http://localhost:3003
+
