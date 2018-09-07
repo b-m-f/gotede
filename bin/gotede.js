@@ -71,6 +71,10 @@ async function isDir(path){
 async function compileFilesInDir(path, config) {
   return new Promise((res, rej) => {
     fs.readdir(path, async (err, files) => {
+      if (err){
+        rej(err);
+        return;
+      }
       const compilePromises = files.map(file => {
         return new Promise(async (res, rej) => {
           const filePath = `${path}/${file}`;
