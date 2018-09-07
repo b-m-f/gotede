@@ -4,7 +4,7 @@
   "description": "Quick setup script for Ghost theme development environment with docker ",
   "main": "index.js",
   "bin": {
-    "ghothede": "./bundle.js"
+    "ghothede": "./dist/bundle.js"
   },
   "scripts": {
     "watch": "rollup -c -w",
