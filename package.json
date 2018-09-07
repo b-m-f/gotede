@@ -2,7 +2,7 @@
   "name": "ghothede",
   "version": "1.4.0",
   "description": "Quick setup script for Ghost theme development environment with docker ",
-  "main": "index.js",
+  "main": "src/main.js",
   "bin": {
     "ghothede": "./dist/bundle.js"
   },
