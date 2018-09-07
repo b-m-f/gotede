@@ -8,7 +8,7 @@
   },
   "scripts": {
     "watch": "rollup -c -w",
-    "build": "cp -r src/input dist/input && rollup -c",
+    "build": "cp -r src/input bin/input && cp src/docker-mount bin/docker-mount &&  rollup -c",
     "start": "npm run watch",
     "prepare": "npm run build"
   },
