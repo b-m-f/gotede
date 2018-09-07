@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "Quick setup script for Ghost theme development environment with docker ",
   "main": "index.js",
+  { "bin" :
+    {
+      "ghothede" : "./index.js"
+    }
+  },
   "scripts": {
     "start": "node index.js"
   },
