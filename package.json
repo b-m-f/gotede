@@ -15,5 +15,8 @@
    "repository": {
     "type": "git",
     "url": "git+https://github.com/b-m-f/ghothede.git"
+  },
+  "engines": {
+    "node": ">=8.0.0"
   }
 }
