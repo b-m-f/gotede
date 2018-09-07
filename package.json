@@ -1,6 +1,6 @@
 {
   "name": "gotede",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "description": "Quick setup script for Ghost theme development environment with docker ",
   "main": "src/main.js",
   "bin": {
