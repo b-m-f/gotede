@@ -10,7 +10,7 @@
     "watch": "rollup -c -w",
     "build": "rollup -c",
     "start": "npm run watch",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "author": "b-m-f <max@ehlers.berlin>",
   "license": "MIT",
