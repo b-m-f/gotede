@@ -1,6 +1,5 @@
 # Ghost theme environment
 
-inspired by https://www.steelcm.com/ghost-theme-development-using-docker/
 
 ## Prerequesites
 
@@ -35,3 +34,7 @@ All the files for theme are located under `src`.
 **CSS** and **JS** files should be put under `src/assets/css`/`src/assets/js`.
 
 For more info on theme development head over to the [official docs](https://themes.ghost.org/docs).
+
+
+## Inspirations 
+https://www.steelcm.com/ghost-theme-development-using-docker/
