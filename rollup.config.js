@@ -7,13 +7,17 @@ const production = !process.env.ROLLUP_WATCH;
 
 export default {
   input: 'src/main.js',
+  external: [
+    'fs',
+    'prompt',
+    'handlebars'
+  ],
 	output: {
     file: 'dist/bundle.js',
 		format: 'cjs', 
-		sourcemap: true
 	},
 	plugins: [
 		resolve(),
 		commonjs(), 
-	]
+  ],
 };
