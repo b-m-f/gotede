@@ -41,7 +41,7 @@ async function compileFile(path, config) {
   const file = await readFile(path);
   const template = handlebars.compile(file);
   const result = template(config);
-  writeToOutput(path, result, config.output);
+  writeToOutput(path, result, config.themeName);
 
 }
 
@@ -62,7 +62,6 @@ async function isDir(path){
 }
 
 export async function compileFilesInDir(path, config) {
-  log(config)
   return new Promise((res, rej) => {
     fs.readdir(path, async (err, files) => {
       if (err){

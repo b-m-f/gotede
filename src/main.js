@@ -13,10 +13,6 @@ function getConfig() {
         port: {
           description: `Under which port should ghost be available on your computer? `,
           required: true
-        },
-        output: {
-          description: `Where should the files be generated to? `,
-          default: 'output',
         }
       }
   };
@@ -36,7 +32,7 @@ function getConfig() {
 async function main(){
   try {
     const config = await getConfig();
-    await compileFilesInDir(`${__dirname}/input`, config);
+    await compileFilesInDir(`${__dirname}/src`, config);
     log('All done. Go to the output directory and start the docker container with `docker-compose up -d`. Then active the theme in Ghost and start developing on the theme files in the `src` directory. For more information head over to Documentation.');
   } catch(e) {
     log(e);
