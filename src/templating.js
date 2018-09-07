@@ -16,11 +16,11 @@ function readFile(path){
 }
 
 function writeToOutput(path, content, outputDir){
-  const outputPath = path.replace(/input/, outputDir )
+  const outputPath = path.replace(/input/, outputDir)
 
   // make sure all dirs exist before writing file
   outputPath.split('/').reduce(function(prev, curr, i) {
-    if (fs.existsSync(prev) === false) {
+    if (prev && fs.existsSync(prev) === false) {
       fs.mkdirSync(prev);
     }
     return prev + '/' + curr;
@@ -61,15 +61,8 @@ async function isDir(path){
   })
 }
 
-function createDirectory(path){
-  if (fs.existsSync(path)) {
-    return;
-  }
-  fs.mkdirSync(path);
-
-}
-
 export async function compileFilesInDir(path, config) {
+  log(config)
   return new Promise((res, rej) => {
     fs.readdir(path, async (err, files) => {
       if (err){

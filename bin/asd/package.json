@@ -1,0 +1,15 @@
+{
+  "name": "asd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-watch": "^5.0.1"
+  }
+}
