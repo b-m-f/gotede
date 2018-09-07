@@ -1,7 +1,6 @@
-const handlebars = require('handlebars');
-const fs = require('fs')
-const config = require("../config.json");
-const {log} = require('./log.js');
+import handlebars from 'handlebars';
+import fs from 'fs';
+import {log} from './log.js';
 
 
 function readFile(path){
@@ -70,7 +69,7 @@ function createDirectory(path){
 
 }
 
-async function compileFilesInDir(path, config) {
+export async function compileFilesInDir(path, config) {
   return new Promise((res, rej) => {
     fs.readdir(path, async (err, files) => {
       const compilePromises = files.map(file => {
@@ -103,6 +102,3 @@ async function compileFilesInDir(path, config) {
   })
 }
 
-module.exports = {
-  compileFilesInDir
-}

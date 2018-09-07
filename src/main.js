@@ -1,6 +1,6 @@
-const {compileFilesInDir} = require('./src/templating.js');
-const {log} = require('./src/log.js');
-const prompt = require('prompt');
+import {compileFilesInDir} from './templating.js';
+import {log} from './log.js';
+import prompt from 'prompt';
 
 
 function getConfig() {

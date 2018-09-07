@@ -1,7 +1,3 @@
-function log(...data){
+export function log(...data){
   console.log(data)
-}
-
-module.exports = {
-  log
 }

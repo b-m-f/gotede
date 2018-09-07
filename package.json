@@ -7,8 +7,9 @@
     "ghothede": "./bundle.js"
   },
   "scripts": {
-    "start": "node index.js",
-    "build": "rollup index.js --format cjs --file bundle.js"
+    "watch": "rollup -c -w",
+    "build": "rollup -c",
+    "start": "npm run watch"
   },
   "author": "b-m-f <max@ehlers.berlin>",
   "license": "MIT",
@@ -24,6 +25,9 @@
     "node": ">=8.0.0"
   },
   "devDependencies": {
-    "rollup": "^0.65.2"
+    "rollup": "^0.65.2",
+    "rollup-plugin-commonjs": "^9.1.3",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-uglify": "^4.0.0"
   }
 }
