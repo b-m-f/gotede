@@ -1,3 +1,5 @@
+'use strict';
+
 const {compileFilesInDir} = require('./src/templating.js');
 const {log} = require('./src/log.js');
 const prompt = require('prompt');

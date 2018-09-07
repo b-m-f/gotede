@@ -4,10 +4,11 @@
   "description": "Quick setup script for Ghost theme development environment with docker ",
   "main": "index.js",
   "bin": {
-    "ghothede": "./index.js"
+    "ghothede": "./bundle.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "rollup index.js --format cjs --file bundle.js"
   },
   "author": "b-m-f <max@ehlers.berlin>",
   "license": "MIT",
@@ -21,5 +22,8 @@
   },
   "engines": {
     "node": ">=8.0.0"
+  },
+  "devDependencies": {
+    "rollup": "^0.65.2"
   }
 }
