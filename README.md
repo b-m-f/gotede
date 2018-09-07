@@ -2,10 +2,6 @@
 
 inspired by https://www.steelcm.com/ghost-theme-development-using-docker/
 
-## TODO
-
-set up templating for docker-compose
-
 ## Prerequesites
 
 First make sure to have [docker](https://docs.docker.com/) and [docker-compose](https://docs.docker.com/compose/) installed. These
