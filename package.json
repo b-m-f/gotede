@@ -1,6 +1,6 @@
 {
   "name": "ghothede",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Quick setup script for Ghost theme development environment with docker ",
   "main": "src/main.js",
   "bin": {
