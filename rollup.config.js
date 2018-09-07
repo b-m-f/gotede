@@ -13,7 +13,7 @@ export default {
     'handlebars'
   ],
 	output: {
-    file: 'dist/bundle.js',
+    file: 'bin/gotede.js',
 		format: 'cjs', 
 	},
 	plugins: [

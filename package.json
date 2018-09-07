@@ -1,10 +1,10 @@
 {
-  "name": "ghothede",
+  "name": "gotede",
   "version": "1.4.5",
   "description": "Quick setup script for Ghost theme development environment with docker ",
   "main": "src/main.js",
   "bin": {
-    "ghothede": "./dist/bundle.js"
+    "ghothede": "./bin/gotede.js"
   },
   "scripts": {
     "watch": "rollup -c -w",

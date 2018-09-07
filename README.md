@@ -1,5 +1,5 @@
-# Ghost theme environment
-
+# gotede 
+Ghost theme development environment
 
 ## Prerequesites
 
