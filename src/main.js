@@ -32,7 +32,9 @@ function getConfig() {
 async function main(){
   try {
     const config = await getConfig();
-    await compileFilesInDir(`${__dirname}/src`, config);
+    config.source = `${__dirname}/src`;
+    config.destination = `${process.cwd()}/${config.themeName}`;
+    await compileFilesInDir(config.source, config);
     log('All done. Go to the output directory and start the docker container with `docker-compose up -d`. Then active the theme in Ghost and start developing on the theme files in the `src` directory. For more information head over to Documentation.');
   } catch(e) {
     log(e);

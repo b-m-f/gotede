@@ -15,8 +15,15 @@ function readFile(path){
   })
 }
 
-function writeToOutput(path, content, outputDir){
-  const outputPath = path.replace(/input/, outputDir)
+function getOutPutPath(inputPath, config){
+  const relativePath = inputPath.replace(config.source,'');
+  return `${config.destination}/${relativePath}`;
+
+}
+
+function writeToOutput(path, content, config){
+  // get the correct input file path here
+  const outputPath = getOutPutPath(path, config);
 
   // make sure all dirs exist before writing file
   outputPath.split('/').reduce(function(prev, curr, i) {
@@ -37,12 +44,12 @@ function writeToOutput(path, content, outputDir){
   })
 }
 
+// get root path and file relative for output writer
 async function compileFile(path, config) {
   const file = await readFile(path);
   const template = handlebars.compile(file);
   const result = template(config);
-  writeToOutput(path, result, config.themeName);
-
+  writeToOutput(path, result, config);
 }
 
 async function isDir(path){
