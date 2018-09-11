@@ -51,7 +51,13 @@ gulp.task('css', function () {
 });
 
 gulp.task('watch', function () {
-    const foldersToWatch = ['**', '!node_modules', '!node_modules/**'];
+  const foldersToWatch = [
+        '**',
+        '!node_modules', '!node_modules/**',
+        '!zip', '!zip/**',
+        '!docker-mount', '!docker-mount/**',
+        'docker-compose.yml'
+    ];
     gulp.watch(`${source}/assets/css/**`, ['css']);
     gulp.src(foldersToWatch, {base: source})
       .pipe(watch(foldersToWatch, {base: source}))
