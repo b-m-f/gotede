@@ -41,7 +41,7 @@ gulp.task('css', function () {
         cssnano()
     ];
 
-  return gulp.src(`${src}/assets/css/*.css`)
+  return gulp.src(`${source}/assets/css/*.css`)
         .on('error', swallowError)
         .pipe(sourcemaps.init())
         .pipe(postcss(processors))
@@ -51,7 +51,7 @@ gulp.task('css', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch(`${src}/assets/css/**`, ['css']);
+    gulp.watch(`${source}/assets/css/**`, ['css']);
     gulp.src(source + '/**/*', {base: source})
       .pipe(watch(source, {base: source}))
       .pipe(gulp.dest(destination));
@@ -65,7 +65,7 @@ gulp.task('zip', ['css'], function () {
     return gulp.src([
         '**',
         '!node_modules', '!node_modules/**',
-        '!zip', '!zip/**'
+        '!zip', '!zip/**',
         '!docker-mount', '!docker-mount/**'
     ])
         .pipe(zip(filename))
