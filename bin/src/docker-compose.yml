@@ -5,7 +5,7 @@ services:
     image: ghost
     container_name: {{themeName}}
     volumes: 
-      - ./docker-mount:/var/lib/ghost/content/themes/{{theme-name}}:rw,z
+      - ./docker-mount:/var/lib/ghost/content/themes/{{themeName}}:rw,z
     ports: 
       - "{{port}}:2368"
     environment:

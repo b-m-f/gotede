@@ -1,6 +1,8 @@
 # gotede 
 Ghost theme development environment
 
+[This](https://ehlers.berlin/gotede-creating-a-ghost-theme/) is the blog post accompanying this project.
+
 ## Prerequesites
 
 First make sure to have [docker](https://docs.docker.com/) and [docker-compose](https://docs.docker.com/compose/) installed. These
@@ -19,11 +21,9 @@ Once completed `cd` into to that folder (`cd output`) and run `docker-compose up
 
 Your instance will be available at `http://localhost:$PORT` where `$PORT` is the one you specified during the questions.
 
-Finish the setup and activate your theme as usual.
+Finish the setup, start the development server as explained below and activate your theme.
 
-$SCREENSHOT
-
-Now everything is set up to develop the theme.
+Now everything is set up. Happy coding.
 
 ## Developing the theme
 
