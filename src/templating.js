@@ -46,9 +46,10 @@ function writeToOutput(path, content, config){
 
 // get root path and file relative for output writer
 async function compileFile(path, config) {
+  const fileExtension = path.split('.').pop();
   const file = await readFile(path);
   const template = handlebars.compile(file);
-  const result = template(config);
+  const result = fileExtension === 'hbs' ? file : template(config);
   writeToOutput(path, result, config);
 }
 
