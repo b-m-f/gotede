@@ -8,7 +8,7 @@
   },
   "scripts": {
     "watch": "rollup -c -w",
-    "build": "cp -r src/src bin/src &&  rollup -c",
+    "build": "rm -rf bin/src &&  cp -r src/src bin/src &&  rollup -c",
     "start": "npm run watch",
     "prepare": "npm run build"
   },
