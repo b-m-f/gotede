@@ -51,9 +51,10 @@ gulp.task('css', function () {
 });
 
 gulp.task('watch', function () {
+    const foldersToWatch = ['**', '!node_modules', '!node_modules/**'];
     gulp.watch(`${source}/assets/css/**`, ['css']);
-    gulp.src(source + '/**/*', {base: source})
-      .pipe(watch(source, {base: source}))
+    gulp.src(foldersToWatch, {base: source})
+      .pipe(watch(foldersToWatch, {base: source}))
       .pipe(gulp.dest(destination));
 });
 
