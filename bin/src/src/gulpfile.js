@@ -25,7 +25,7 @@ const nodemonServerInit = function () {
     livereload.listen(1234);
 };
 
-const source = './src',  
+const source = './',  
   destination = './docker-mount';
 
 gulp.task('build', ['css'], function (/* cb */) {
@@ -58,14 +58,15 @@ gulp.task('watch', function () {
 });
 
 gulp.task('zip', ['css'], function () {
-    const targetDir = 'dist/';
+    const targetDir = 'zip/';
     const themeName = require('./package.json').name;
     const filename = themeName + '.zip';
 
     return gulp.src([
         '**',
         '!node_modules', '!node_modules/**',
-        '!dist', '!dist/**'
+        '!zip', '!zip/**'
+        '!docker-mount', '!docker-mount/**'
     ])
         .pipe(zip(filename))
         .pipe(gulp.dest(targetDir));
