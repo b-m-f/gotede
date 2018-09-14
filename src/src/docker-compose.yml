@@ -10,4 +10,5 @@ services:
       - "{{port}}:2368"
     environment:
       - url=http://localhost:{{port}}
+      - NODE_ENV=development
 
