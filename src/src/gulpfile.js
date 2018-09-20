@@ -37,7 +37,7 @@ gulp.task("watch-css", function() {
   gulp.watch(`${source}/assets/css/**/*.css`, gulp.series("css"));
 });
 
-const sourceFiles = ["*.hbs", "assets", "package.json", "locales"];
+const sourceFiles = ["*.hbs", "assets/**/*", "package.json", "locales**/*"];
 
 gulp.task("move-source-files", function(done) {
   gulp.src(sourceFiles, { base: source }).pipe(gulp.dest(destination));
