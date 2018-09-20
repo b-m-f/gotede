@@ -9,11 +9,7 @@ const zip = require("gulp-zip");
 const watch = require("gulp-watch");
 
 // postcss plugins
-const autoprefixer = require("autoprefixer");
-const colorFunction = require("postcss-color-function");
-const cssnano = require("cssnano");
-const customProperties = require("postcss-custom-properties");
-const easyimport = require("postcss-easy-import");
+const postcssPresetEnv = require("postcss-preset-env");
 
 const swallowError = function swallowError(error) {
   gutil.log(error.toString());
@@ -29,22 +25,17 @@ const source = ".",
   destination = "./docker-mount";
 
 gulp.task("css", function() {
-  const processors = [
-    customProperties({
-      importFrom: `${source}/assets/css/helpers/variables.css`,
-      preserve: false
-    }),
-    easyimport,
-    colorFunction(),
-    autoprefixer({ browsers: ["last 2 versions"] }),
-    cssnano()
-  ];
-
   return gulp
     .src(`${source}/assets/css/*.css`)
     .on("error", swallowError)
     .pipe(sourcemaps.init())
-    .pipe(postcss(processors))
+    .pipe(
+      postcss(
+        postcssPresetEnv({
+          importFrom: `${source}/assets/css/helpers/variables.css`
+        })
+      )
+    )
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest("assets/built/"))
     .pipe(livereload());
