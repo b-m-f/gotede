@@ -2,11 +2,9 @@ const gulp = require("gulp");
 
 // gulp plugins and utils
 const gutil = require("gulp-util");
-const livereload = require("gulp-livereload");
 const postcss = require("gulp-postcss");
 const sourcemaps = require("gulp-sourcemaps");
 const zip = require("gulp-zip");
-const watch = require("gulp-watch");
 
 // postcss plugins
 const postcssPresetEnv = require("postcss-preset-env");
@@ -17,58 +15,40 @@ const swallowError = function swallowError(error) {
   this.emit("end");
 };
 
-const nodemonServerInit = function() {
-  livereload.listen(1234);
-};
-
 const source = ".",
   destination = "./docker-mount";
 
 gulp.task("css", function() {
+  const processors = [
+    postcssPresetEnv({
+      importFrom: `${source}/assets/css/helpers/variables.css`
+    })
+  ];
   return gulp
     .src(`${source}/assets/css/*.css`)
     .on("error", swallowError)
     .pipe(sourcemaps.init())
-    .pipe(
-      postcss(
-        postcssPresetEnv({
-          importFrom: `${source}/assets/css/helpers/variables.css`
-        })
-      )
-    )
+    .pipe(postcss(processors))
     .pipe(sourcemaps.write("."))
-    .pipe(gulp.dest("assets/built/"))
-    .pipe(livereload());
+    .pipe(gulp.dest("assets/built/"));
 });
 
-gulp.task(
-  "build",
-  gulp.series("css", function(/* cb */) {
-    return nodemonServerInit();
-  })
-);
+gulp.task("watch-css", function() {
+  gulp.watch(`${source}/assets/css/**/*.css`, gulp.series("css"));
+});
 
-gulp.task(
-  "watch",
-  gulp.series("css", function() {
-    const foldersToWatch = [
-      "**",
-      "!node_modules",
-      "!node_modules/**",
-      "!zip",
-      "!zip/**",
-      "!docker-mount",
-      "!docker-mount/**",
-      "!docker-compose.yml",
-      "!gulpfile.js"
-    ];
-    gulp.watch(`${source}/assets/css/**`, gulp.parallel("css"));
-    gulp
-      .src(foldersToWatch, { base: source })
-      .pipe(watch(foldersToWatch, { base: source }))
-      .pipe(gulp.dest(destination));
-  })
-);
+const sourceFiles = ["*.hbs", "assets", "package.json", "locales"];
+
+gulp.task("move-source-files", function(done) {
+  gulp.src(sourceFiles, { base: source }).pipe(gulp.dest(destination));
+  done();
+});
+
+gulp.task("watch-source-files", function() {
+  gulp.watch(sourceFiles, gulp.series("move-source-files"));
+});
+
+gulp.task("watch", gulp.parallel("watch-css", "watch-source-files"));
 
 gulp.task(
   "zip",
@@ -92,9 +72,4 @@ gulp.task(
   })
 );
 
-gulp.task(
-  "default",
-  gulp.series("build", function() {
-    gulp.start("watch");
-  })
-);
+gulp.task("default", gulp.series("css", "watch"));
