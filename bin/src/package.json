@@ -12,7 +12,7 @@
   "devDependencies": {
     "autoprefixer": "6.3.6",
     "cssnano": "3.7.1",
-    "gulp": "^3.9.1",
+    "gulp": "4.0.0",
     "gulp-livereload": "3.8.1",
     "gulp-postcss": "6.1.1",
     "gulp-sourcemaps": "1.6.0",
@@ -20,7 +20,7 @@
     "gulp-watch": "4.3.8",
     "gulp-zip": "4.0.0",
     "postcss-color-function": "2.0.1",
-    "postcss-custom-properties": "5.0.1",
-    "postcss-easy-import": "1.0.1"
+    "postcss-custom-properties": "8.0.3",
+    "postcss-easy-import": "3.0.0"
   }
 }
