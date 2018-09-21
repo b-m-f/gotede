@@ -8,6 +8,8 @@ const zip = require("gulp-zip");
 
 // postcss plugins
 const postcssPresetEnv = require("postcss-preset-env");
+const autoprefixer = require("autoprefixer");
+const postCSSImport = require("postcss-import");
 
 const swallowError = function swallowError(error) {
   gutil.log(error.toString());
@@ -22,7 +24,9 @@ gulp.task("css", function() {
   const processors = [
     postcssPresetEnv({
       importFrom: `${source}/assets/css/helpers/variables.css`
-    })
+    }),
+    autoprefixer,
+    postCSSImport
   ];
   return gulp
     .src(`${source}/assets/css/*.css`)
