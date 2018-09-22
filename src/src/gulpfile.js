@@ -1,7 +1,6 @@
 const gulp = require("gulp");
 
 // gulp plugins and utils
-const gutil = require("gulp-util");
 const postcss = require("gulp-postcss");
 const sourcemaps = require("gulp-sourcemaps");
 const zip = require("gulp-zip");
@@ -11,26 +10,22 @@ const postcssPresetEnv = require("postcss-preset-env");
 const autoprefixer = require("autoprefixer");
 const postCSSImport = require("postcss-import");
 
-const swallowError = function swallowError(error) {
-  gutil.log(error.toString());
-  gutil.beep();
-  this.emit("end");
-};
-
 const source = ".",
   destination = "./docker-mount";
 
 gulp.task("css", function() {
   const processors = [
+    postCSSImport,
     postcssPresetEnv({
-      importFrom: `${source}/assets/css/helpers/variables.css`
+      stage: 3,
+      features: {
+        "nesting-rules": true
+      }
     }),
-    autoprefixer,
-    postCSSImport
+    autoprefixer
   ];
   return gulp
-    .src(`${source}/assets/css/*.css`)
-    .on("error", swallowError)
+    .src(`${source}/assets/css/styles.css`)
     .pipe(sourcemaps.init())
     .pipe(postcss(processors))
     .pipe(sourcemaps.write("."))
@@ -52,7 +47,10 @@ gulp.task("watch-source-files", function() {
   gulp.watch(sourceFiles, gulp.series("move-source-files"));
 });
 
-gulp.task("watch", gulp.parallel("watch-css", "watch-source-files"));
+gulp.task(
+  "watch",
+  gulp.series("css", gulp.parallel("watch-css", "watch-source-files"))
+);
 
 gulp.task(
   "zip",
@@ -76,4 +74,4 @@ gulp.task(
   })
 );
 
-gulp.task("default", gulp.series("css", "watch"));
+gulp.task("default", gulp.series("watch"));
