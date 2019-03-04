@@ -1,7 +1,7 @@
 # gotede 
 Ghost theme development environment
 
-[This](https://ehlers.berlin/gotede-creating-a-ghost-theme/) is the blog post accompanying this project.
+[This](https://maximilianehlers.com/gotede-quickly-create-a-ghost-theme-development-environment/) is the blog post accompanying this project.
 
 ## Prerequesites
 
