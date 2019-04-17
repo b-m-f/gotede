@@ -10,7 +10,7 @@ will be used to run the **Ghost** instance for the theme developemt inside of a 
 
 ## Creating a new theme
 
-The first thing you need to do is to install this script with `npm install -g ghothede`.
+The first thing you need to do is to install this script with `npm install -g gotede`.
 
 Now just run it with `ghothede`. 
 You will be asked a few questions.
