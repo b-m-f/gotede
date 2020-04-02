@@ -15,7 +15,7 @@
   "author": "b-m-f <max@ehlers.berlin>",
   "license": "MIT",
   "dependencies": {
-    "handlebars": "^4.0.12",
+    "handlebars": "^4.7.4",
     "prompt": "^1.0.0"
   },
   "repository": {
@@ -26,8 +26,8 @@
     "node": ">=8.0.0"
   },
   "devDependencies": {
-    "rollup": "^0.65.2",
-    "rollup-plugin-commonjs": "^9.1.6",
-    "rollup-plugin-node-resolve": "^3.3.0"
+    "rollup": "^2.3.2",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1"
   }
 }
