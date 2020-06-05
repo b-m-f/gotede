@@ -12,7 +12,7 @@ will be used to run the **Ghost** instance for the theme developemt inside of a 
 
 The first thing you need to do is to install this script with `npm install -g gotede`.
 
-Now just run it with `ghothede`. 
+Now just run it with `gotede`. 
 You will be asked a few questions.
 
 The script will now create the necessary files into the specified **output** folder (default is `ouput`).
